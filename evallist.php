@@ -100,6 +100,7 @@ open for judging by looking at the judgingopen field.
 If this contest is Underclassmen Hopwood or Grad/Ugrad Hopwood parse the
 individual contest to create separate panels for each categoryType
 
+$sqlContestSelect = <<<SQL
 SELECT
         DISTINCT `tbl_contest`.`id` AS ContestId,
         `tbl_contest`.`date_closed`,
@@ -119,8 +120,10 @@ SELECT
     JOIN `tbl_contestjudge` ON (`tbl_contest`.`contestsID` = `tbl_contestjudge`.`contestsID`)
     WHERE `tbl_contest`.`judgingOpen` = 1 AND `tbl_contestjudge`.`uniqname` = 'rsmoke' AND `vw_conteststocategory`.`CategoryID` IN (SELECT `tbl_contestjudge`.`categoryID` FROM `tbl_contestjudge` WHERE `tbl_contestjudge`.`uniqname` = 'rsmoke' AND `tbl_contestjudge`.`contestsID` = `lk_contests`.`id`)
     ORDER BY `tbl_contest`.`date_closed`,`lk_contests`.`name`
+SQL;
 
-    Then do an if for Underclassmen Hopwood or Grad/Ugrad Hopwood
+    Then do an if looking for Underclassmen Hopwood or Grad/Ugrad Hopwood
+    and if TURE create separate accordions for each subtype.
  ============================================================================*/
 
 $sqlContestSelect = <<<SQL
