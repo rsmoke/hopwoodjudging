@@ -89,6 +89,40 @@ if ($isJudge){
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
 <?php
+/*****************************************************************************
+This query uses the contest instance id and joins the contests lookup table to
+to get readable names. It joins the contestjudge table to get contests that are
+associated only to the specific logged in judge. It checks that the contest is
+open for judging by looking at the judgingopen field.
+ *****************************************************************************/
+
+/*============================TODO============================================
+If this contest is Underclassmen Hopwood or Grad/Ugrad Hopwood parse the
+individual contest to create separate panels for each categoryType
+
+SELECT
+        DISTINCT `tbl_contest`.`id` AS ContestId,
+        `tbl_contest`.`date_closed`,
+        `tbl_contest`.`judgingOpen`,
+        `lk_contests`.`name`,
+        `vw_conteststocategory`.`CategoryName`,
+        `vw_conteststocategory`.`CategoryID`,
+        `lk_contests`.`freshmanEligible`,
+        `lk_contests`.`sophmoreEligible`,
+        `lk_contests`.`juniorEligible`,
+        `lk_contests`.`seniorEligible`,
+        `lk_contests`.`graduateEligible`,
+        `tbl_contestjudge`.`uniqname`
+    FROM tbl_contest
+    JOIN `lk_contests` ON ((`tbl_contest`.`contestsID` = `lk_contests`.`id`))
+    JOIN `vw_conteststocategory` ON (`tbl_contest`.`contestsID` = `vw_conteststocategory`.`contestsID`)
+    JOIN `tbl_contestjudge` ON (`tbl_contest`.`contestsID` = `tbl_contestjudge`.`contestsID`)
+    WHERE `tbl_contest`.`judgingOpen` = 1 AND `tbl_contestjudge`.`uniqname` = 'rsmoke' AND `vw_conteststocategory`.`CategoryID` IN (SELECT `tbl_contestjudge`.`categoryID` FROM `tbl_contestjudge` WHERE `tbl_contestjudge`.`uniqname` = 'rsmoke' AND `tbl_contestjudge`.`contestsID` = `lk_contests`.`id`)
+    ORDER BY `tbl_contest`.`date_closed`,`lk_contests`.`name`
+
+    Then do an if for Underclassmen Hopwood or Grad/Ugrad Hopwood
+ ============================================================================*/
+
 $sqlContestSelect = <<<SQL
 SELECT
         DISTINCT `tbl_contest`.`id` AS ContestId,
@@ -183,22 +217,22 @@ if (!$resultsInd) {
           echo '';
         }
 
-        } else {
-          echo '';
-        }
-        echo '</td><td min-width="250px"><div class="commentBlock">';
+      } else {
+        echo '';
+      }
+      echo '</td><td min-width="250px"><div class="commentBlock">';
       if ($entry['evaluator'] == $login_name){
         echo $entry['contestantcomment'];
-        }else{
-          echo '';
-        }
-        echo '</div></td><td min-width="250px"><div class="commentBlock">';
-        if ($entry['evaluator'] == $login_name){
-          echo $entry['committeecomment'];
-        }else{
-          echo '';
-        }
-        echo '</div></td><td><small>' . $entry['EntryId'] . '</small></td></tr>';
+      }else{
+        echo '';
+      }
+      echo '</div></td><td min-width="250px"><div class="commentBlock">';
+      if ($entry['evaluator'] == $login_name){
+        echo $entry['committeecomment'];
+      }else{
+        echo '';
+      }
+      echo '</div></td><td><small>' . $entry['EntryId'] . '</small></td></tr>';
     }
 }
 
