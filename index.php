@@ -82,7 +82,7 @@ if ($isJudge) {
               <li>The comment areas are optional and for your own use. No one will read the comments.</li>
               <ul>
                 <li><em>Note: If you are evaluating The Roy W. Cowden Memorial Fellowship entries, include the dollar amount you wish to award in the Comments to committee text box.</em></li>
-              </ul>  
+              </ul>
               <li>You are able to edit your evaluation on any particular entry up to the deadline for judging.</li>
               <li>To start the evaluation process please select the Evaluate button below</li>
             </ul>
@@ -98,10 +98,10 @@ if ($isJudge) {
                     <ul class="list-inline text-center">
                       <li>
                         <address>
-                          <strong>Andrea Beauchamp</strong><br>
+                          <strong>Hannah Ensor</strong><br>
                             Assistant Director, Hopwood Awards Program<br>
                           <abbr title="eMail">e:</abbr>
-                          <a href="mailto:abeauch@umich.edu">abeauch@umich.edu</a>
+                          <a href="mailto:ensorh@umich.edu">abeauch@umich.edu</a>
                         </address>
                       </li>
                     </ul>
