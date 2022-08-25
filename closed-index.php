@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContestJudging.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/basicLib.php');
 ?>
 <!DOCTYPE html>
 <body class="Site">
@@ -43,7 +44,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContestJudgin
 
       footer {
         width: 50%;
-        background-color: #FFFAFE;
+        background-color: #fffffff7;
         border: 1px solid gray;
         padding: 20px;
         display: flex;
@@ -73,7 +74,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContestJudgin
       }
 
       .copyright {
-        background-color: #FFFAFE;
+        background-color: #FFF;
         border: 1px solid gray;
         flex-direction: row;
         padding-bottom: 10px;
@@ -96,6 +97,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/../Support/configEnglishContestJudgin
     </address>
       <img class="lsa_img" src="https://lsa.umich.edu/content/dam/lsa-site-assets/images/images/logos-colors/LSA_logo_1000.png" alt="LSA at the University of Michigan">
   </footer>
-        <a class="copyright" href="http://www.regents.umich.edu">© 2014 Regents of the University of Michigan</a>
+        <a class="copyright" href="http://www.regents.umich.edu">&copy; <?php auto_copyright();?> Regents of the University of Michigan</a>
 </body>
 </html>
